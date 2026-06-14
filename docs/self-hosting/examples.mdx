@@ -3,6 +3,10 @@ title: "Docker Compose Examples"
 description: "A collection of Docker Compose examples for different deployment scenarios. If you have a different setup that works for you, please share it by opening a pull request on GitHub."
 ---
 
+<Info>
+  **From v5.1.0 onwards** — PDF generation now runs entirely client-side via `@react-pdf/renderer`. None of the examples below require a Browserless or Chromium service. Older configurations that still define a `printer` service or set `BROWSERLESS_TOKEN` / `PRINTER_*` will continue to start, but those services are inert and can be removed.
+</Info>
+
 ## Overview
 
 Every self-hosted setup is unique. You might be running on a single VPS, a Kubernetes cluster, behind Cloudflare Tunnel, or using a specific reverse proxy like Traefik or nginx. This page provides real-world Docker Compose configurations for various deployment scenarios to help you get started faster.
@@ -19,7 +23,7 @@ These examples go beyond the basic setup in the [Self-Hosting with Docker](/self
 
 ## Docker with Traefik
 
-This example uses [Traefik](https://traefik.io/) as a reverse proxy with automatic SSL certificate management via Let's Encrypt. Only the Reactive Resume app is exposed through Traefik—Postgres and the printer remain on an internal network.
+This example uses [Traefik](https://traefik.io/) as a reverse proxy with automatic SSL certificate management via Let's Encrypt. Only the Reactive Resume app is exposed through Traefik—Postgres remains on an internal network.
 
 <Tip>
   Traefik automatically discovers services via Docker labels and handles SSL certificates, making it ideal for setups
@@ -78,31 +82,12 @@ services:
       timeout: 5s
       retries: 5
 
-  printer:
-    image: ghcr.io/browserless/chromium:latest
-    restart: unless-stopped
-    environment:
-      - QUEUED=10
-      - HEALTH=true
-      - CONCURRENT=5
-      # Optional: Set a token for authentication
-      # - TOKEN=your-secret-token
-    networks:
-      - reactive_resume_network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=your-secret-token"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
   reactive_resume:
     image: amruthpillai/reactive-resume:latest
     restart: unless-stopped
     environment:
       - APP_URL=https://resume.${DOMAIN}
-      - PRINTER_APP_URL=http://reactive_resume:3000
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
-      - PRINTER_ENDPOINT=http://printer:3000
       - AUTH_SECRET=${AUTH_SECRET}
       # Add other optional env vars as needed (SMTP, S3, OAuth, etc.)
     volumes:
@@ -112,8 +97,6 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      printer:
-        condition: service_healthy
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.reactive-resume.rule=Host(`resume.${DOMAIN}`)"
@@ -121,7 +104,7 @@ services:
       - "traefik.http.routers.reactive-resume.tls.certresolver=letsencrypt"
       - "traefik.http.services.reactive-resume.loadbalancer.server.port=3000"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then((r) => { if (!r.ok) process.exit(1); }).catch(() => process.exit(1));"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -184,26 +167,12 @@ services:
       timeout: 5s
       retries: 5
 
-  printer:
-    image: ghcr.io/browserless/chromium:latest
-    restart: unless-stopped
-    environment:
-      - QUEUED=10
-      - HEALTH=true
-      - CONCURRENT=5
-      # Optional: Set a token for authentication
-      # - TOKEN=your-secret-token
-    networks:
-      - reactive_resume_network
-
   reactive_resume:
     image: amruthpillai/reactive-resume:latest
     restart: unless-stopped
     environment:
       - APP_URL=https://resume.${DOMAIN}
-      - PRINTER_APP_URL=http://reactive_resume:3000
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
-      - PRINTER_ENDPOINT=http://printer:3000
       - AUTH_SECRET=${AUTH_SECRET}
       # Add other optional env vars as needed (SMTP, S3, OAuth, etc.)
     volumes:
@@ -213,10 +182,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      printer:
-        condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then((r) => { if (!r.ok) process.exit(1); }).catch(() => process.exit(1));"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -281,7 +248,7 @@ http {
             proxy_set_header X-Forwarded-Proto $scheme;
             proxy_cache_bypass $http_upgrade;
 
-            # Timeouts for long-running requests (PDF generation)
+            # Reasonable timeouts for app requests
             proxy_connect_timeout 60s;
             proxy_send_timeout 60s;
             proxy_read_timeout 60s;
@@ -326,26 +293,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
-    deploy:
-      mode: replicated
-      replicas: 1
-
-  printer:
-    image: ghcr.io/browserless/chromium:latest
-    networks:
-      - reactive_resume_network
-    environment:
-      - QUEUED=10
-      - HEALTH=true
-      - CONCURRENT=5
-      # Optional: Set a token for authentication
-      # - TOKEN=your-secret-token
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/pressure?token=your-secret-token"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
       start_period: 30s
     deploy:
       mode: replicated
@@ -396,9 +343,6 @@ services:
       - reactive_resume_data:/app/data
     environment:
       - APP_URL=$APP_URL
-      # If using browserless with token auth, include the token in the URL:
-      # PRINTER_ENDPOINT=ws://printer:3000?token=your-secret-token
-      - PRINTER_ENDPOINT=$PRINTER_ENDPOINT
       - DATABASE_URL=$DATABASE_URL
       - AUTH_SECRET=$AUTH_SECRET
       - GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID
@@ -419,7 +363,7 @@ services:
       - S3_ENDPOINT=$S3_ENDPOINT
       - S3_BUCKET=$S3_BUCKET
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then((r) => { if (!r.ok) process.exit(1); }).catch(() => process.exit(1));"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -469,10 +413,10 @@ docker stack deploy -c compose-swarm.yml reactive_resume
 docker stack services reactive_resume
 
 # View logs for the app
-docker service logs -f reactive_resume_app
+docker service logs -f reactive_resume_reactive_resume
 
 # Scale the app
-docker service scale reactive_resume_app=3
+docker service scale reactive_resume_reactive_resume=3
 
 # Remove the stack
 docker stack rm reactive_resume

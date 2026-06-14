@@ -248,7 +248,7 @@ Icons use @phosphor-icons/web names. Common icons: `linkedin-logo`, `github-logo
 
 ### Template Options
 
-Available templates: `azurill`, `bronzor`, `chikorita`, `ditto`, `ditgar`, `gengar`, `glalie`, `kakuna`, `lapras`, `leafish`, `onyx`, `pikachu`, `rhyhorn`
+Available templates: `azurill`, `bronzor`, `chikorita`, `ditto`, `ditgar`, `gengar`, `glalie`, `kakuna`, `lapras`, `leafish`, `meowth`, `onyx`, `pikachu`, `rhyhorn`, `scizor`
 
 ### Layout Configuration
 
@@ -321,15 +321,6 @@ Level types: `hidden`, `circle`, `square`, `rectangle`, `rectangle-full`, `progr
 ```
 
 Font family must be available on Google Fonts. Font weights: 100-900.
-
-### CSS Customization
-
-```json
-{
-  "enabled": false,
-  "value": ""
-}
-```
 
 ## Custom Sections
 
