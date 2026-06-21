@@ -1,4 +1,6 @@
+import type { Locale, Script } from "@reactive-resume/utils/locale";
 import { unique } from "@reactive-resume/utils/field";
+import { getLocaleScript, isCjkScript } from "@reactive-resume/utils/locale";
 import webFontListJSON from "./webfontlist.json";
 
 export type FontCategory = "display" | "handwriting" | "monospace" | "serif" | "sans-serif";
@@ -80,6 +82,23 @@ const resumeCjkSerifFontFallbacks = [
 	"KaiTi",
 	"FangSong",
 ] as const;
+
+// Per-script Noto web font, split by serif/sans category. These match the
+// actual writing system: Hangul lives only in the KR fonts, Kana only in JP,
+// Arabic glyphs only in the Arabic fonts, etc. — so a Latin or Simplified-
+// Chinese font cannot render them and produces tofu. Where Noto ships no serif
+// variant for a script (Hebrew, Thai), the serif slot reuses the sans font so
+// serif resumes still render real glyphs instead of nothing. All entries are
+// present in webfontlist.json.
+const scriptFonts: Record<Script, { serif: string; sansSerif: string }> = {
+	hangul: { serif: "Noto Serif KR", sansSerif: "Noto Sans KR" },
+	kana: { serif: "Noto Serif JP", sansSerif: "Noto Sans JP" },
+	"han-traditional": { serif: "Noto Serif TC", sansSerif: "Noto Sans TC" },
+	"han-simplified": { serif: "Noto Serif SC", sansSerif: "Noto Sans SC" },
+	arabic: { serif: "Noto Naskh Arabic", sansSerif: "Noto Sans Arabic" },
+	hebrew: { serif: "Noto Sans Hebrew", sansSerif: "Noto Sans Hebrew" },
+	thai: { serif: "Noto Sans Thai", sansSerif: "Noto Sans Thai" },
+};
 
 const genericFontFamilies = new Set([
 	"-apple-system",
@@ -172,6 +191,11 @@ function getPrimaryCjkWebFont(family: string) {
 	return category === "serif" ? "Noto Serif SC" : "Noto Sans SC";
 }
 
+function getScriptFont(script: Script, category: FontCategory | null) {
+	const variants = scriptFonts[script];
+	return category === "serif" ? variants.serif : variants.sansSerif;
+}
+
 export function isStandardPdfFontFamily(family: string) {
 	return standardFontList.some((font) => font.family === family);
 }
@@ -200,13 +224,39 @@ export function getFallbackWebFontFamilies(family: string) {
 }
 
 /**
- * Returns a CJK web font (Noto Sans/Serif SC) to register as a glyph-level
- * fallback for PDF rendering, or `null` when no fallback is needed
- * (primary already is the fallback).
+ * Returns an ordered stack of Noto web fonts to register as glyph-level
+ * fallbacks for PDF rendering. react-pdf resolves the font per-codepoint
+ * left-to-right across the stack, so listing one font per writing system lets
+ * a single resume mix Latin with Hangul, Kana, Han, Arabic, Hebrew or Thai.
  *
- * Source Han Sans/Serif SC covers all CJK-Unified ideographs, so a single
- * font handles Simplified/Traditional Chinese, Japanese kanji and Korean
- * hanja — the locales reporting #2986 / #3006.
+ * Ordering: the locale's primary script first (the dominant language), then
+ * any other scripts actually detected in the content. When the stack contains
+ * a CJK script, a Simplified Chinese entry is appended as a safety net for
+ * stray CJK-Unified ideographs (preserving prior behavior); non-CJK scripts
+ * get no such net. The result is deduped, has the primary family removed, and
+ * only keeps fonts that exist in the webfontlist.
+ */
+export function getPdfFallbackFontFamilies(
+	family: string,
+	options: { locale?: Locale; scripts?: Iterable<Script> } = {},
+): string[] {
+	const category = getFontCategory(family);
+
+	const ordered: Script[] = [];
+	const localeScript = getLocaleScript(options.locale);
+	if (localeScript) ordered.push(localeScript);
+	if (options.scripts) ordered.push(...options.scripts);
+	if (ordered.some(isCjkScript)) ordered.push("han-simplified");
+
+	return unique(ordered.map((script) => getScriptFont(script, category)))
+		.filter((candidate) => candidate !== family)
+		.filter((candidate) => Boolean(getWebFont(candidate)));
+}
+
+/**
+ * Back-compat single-font resolver kept for the public `@reactive-resume/fonts`
+ * surface: returns the Simplified Chinese fallback (Noto Sans/Serif SC) for a
+ * family, or `null` when the family already is that fallback.
  */
 export function getPdfCjkFallbackFontFamily(family: string): string | null {
 	const fallback = getPrimaryCjkWebFont(family);

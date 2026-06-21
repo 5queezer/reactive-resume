@@ -31,6 +31,20 @@ Reactive Resume makes building resumes straightforward. Pick a template, fill in
 
 Built with privacy as a core principle, Reactive Resume gives you complete ownership of your data. The codebase is fully open-source under the MIT license, with no tracking, no ads, and no hidden costs.
 
+## Sponsors
+
+Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Thank you to every sponsor who helps fund hosting, maintenance, and continued development for the community.
+
+<p>
+  <a href="https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=reactive-resume">
+    <img src="apps/web/public/sponsors/atlas-cloud-logo-white.svg" alt="Atlas Cloud" width="320" />
+  </a>
+</p>
+
+[Atlas Cloud](https://www.atlascloud.ai/?utm_source=github&utm_medium=link&utm_campaign=reactive-resume) supports Reactive Resume as a project sponsor. Atlas Cloud provides a unified AI platform for developers, with access to hundreds of models for chat, image generation, video generation, media processing, and GPU cloud workloads through one API key, one endpoint, and one billing account.
+
+If your company would like to sponsor Reactive Resume, email [hello@amruthpillai.com](mailto:hello@amruthpillai.com).
+
 ## Features
 
 **Resume Building**

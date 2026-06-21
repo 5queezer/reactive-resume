@@ -8,7 +8,7 @@ msgstr ""
 "Language: hi\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Hindi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -441,6 +441,10 @@ msgstr "इस रिज्यूमे के बारे में कुछ 
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "आकार अनुपात"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "एटलस क्लाउड, रिएक्टिव रिज्यूम को प्रोजेक्ट स्पॉन्सर के रूप में समर्थन देता है। यदि आपकी कंपनी इस प्रोजेक्ट को स्पॉन्सर करना चाहती है, तो कृपया <0>{sponsorshipEmail}पर ईमेल करें।</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "रिएक्टिव रिज्यूम मुफ़्त और
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume ओपन‑सोर्स, गोपनीयता‑केंद्रित और पूरी तरह मुफ़्त है। अन्य रेज़्यूमे बिल्डर के विपरीत, यह विज्ञापन नहीं दिखाता, आपका डेटा ट्रैक नहीं करता और न ही आपकी सुविधाओं को पेवॉल के पीछे सीमित करता है।"
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "रिएक्टिव रिज्यूम मुफ़्त, ओपन-सोर्स और स्वतंत्र बना हुआ है क्योंकि कंपनियां इसके पीछे के काम का समर्थन करना चुनती हैं। उनका प्रायोजन होस्टिंग, रखरखाव और समुदाय के लिए निरंतर विकास को वित्त पोषित करने में मदद करता है।"
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "अक्षरों का रंग"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "थाई"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "हमारे प्रायोजकों को धन्यवाद"
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

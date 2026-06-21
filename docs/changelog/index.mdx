@@ -4,6 +4,35 @@ description: "List of all notable changes and updates to Reactive Resume"
 rss: true
 ---
 
+<Update label="v5.1.9" description="18th June 2026">
+## Highlights
+
+- **Better multilingual PDF rendering.** PDF generation now uses script-aware Noto fallback stacks for Korean, Japanese, Traditional and Simplified Chinese, Arabic, Hebrew, and Thai, so non-Latin resumes render more reliably in the live preview and exported PDFs. [#3158](https://github.com/amruthpillai/reactive-resume/pull/3158)
+- **Hide Link Underline setting.** Resume page settings now include a dedicated **Hide Link Underline** option that is saved with the resume and respected by PDF templates. [5fb4976ec](https://github.com/amruthpillai/reactive-resume/commit/5fb4976ec), [#3134](https://github.com/amruthpillai/reactive-resume/issues/3134)
+- **Sponsor placements.** The landing page and docs now include optional sponsor placements for Atlas Cloud, controlled by a new feature flag so deployments can opt in when appropriate. [f14d8ce69](https://github.com/amruthpillai/reactive-resume/commit/f14d8ce69)
+
+## Resume Builder & Rendering
+
+- Added the **Hide Link Underline** page option to the builder, resume schema, default resume data, import path, and shared PDF link rendering. [5fb4976ec](https://github.com/amruthpillai/reactive-resume/commit/5fb4976ec), [90a9bb9cf](https://github.com/amruthpillai/reactive-resume/commit/90a9bb9cf), [#3134](https://github.com/amruthpillai/reactive-resume/issues/3134)
+- Fixed mixed CJK and Latin word wrapping so CJK text can still break per character without splitting Latin words letter by letter. [#3136](https://github.com/amruthpillai/reactive-resume/pull/3136)
+- Added locale and content-aware PDF fallback fonts for Korean, Japanese, Chinese, Arabic, Hebrew, and Thai, while keeping CJK-specific line breaking limited to CJK scripts. [#3158](https://github.com/amruthpillai/reactive-resume/pull/3158)
+- Fixed redacted resume access checks so placeholder resume data uses a non-empty name. [#3138](https://github.com/amruthpillai/reactive-resume/pull/3138)
+
+## AI, MCP & Self-Hosting
+
+- Fixed AI resume analysis when model responses wrap JSON in Markdown code fences. [#3142](https://github.com/amruthpillai/reactive-resume/pull/3142)
+- Added `FLAG_DISABLE_API_RATE_LIMIT` for trusted self-hosted deployments that need to disable authentication API rate limiting, and documented it in the Docker self-hosting guide. [#3149](https://github.com/amruthpillai/reactive-resume/pull/3149)
+- Added `FLAG_SHOW_SPONSORS`, sponsor assets, landing-page placement, docs navigation, and README sponsor information for Atlas Cloud. [f14d8ce69](https://github.com/amruthpillai/reactive-resume/commit/f14d8ce69)
+- Fixed the MCP PDF download test mock to match the current tool behavior. [#3144](https://github.com/amruthpillai/reactive-resume/pull/3144)
+
+## Localization & Maintenance
+
+- Synced translation catalogs from Crowdin across the app. [#3132](https://github.com/amruthpillai/reactive-resume/pull/3132), [#3135](https://github.com/amruthpillai/reactive-resume/pull/3135), [#3148](https://github.com/amruthpillai/reactive-resume/pull/3148), [#3162](https://github.com/amruthpillai/reactive-resume/pull/3162)
+- Updated workspace dependencies and refreshed linting/tooling configuration. [042d076ef](https://github.com/amruthpillai/reactive-resume/commit/042d076ef), [37faf592b](https://github.com/amruthpillai/reactive-resume/commit/37faf592b), [ef5ff30b](https://github.com/amruthpillai/reactive-resume/commit/ef5ff30b)
+
+**Full Changelog**: [v5.1.8...v5.1.9](https://github.com/amruthpillai/reactive-resume/compare/v5.1.8...v5.1.9)
+</Update>
+
 <Update label="v5.1.8" description="1st June 2026">
 ## Highlights
 

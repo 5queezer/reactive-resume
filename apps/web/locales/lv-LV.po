@@ -8,7 +8,7 @@ msgstr ""
 "Language: lv\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Latvian\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2;\n"
@@ -441,6 +441,10 @@ msgstr "Jautājiet jebko par šo CV"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "Proporcijas"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud atbalsta Reactive Resume kā projekta sponsoru. Ja jūsu uzņēmums vēlas sponsorēt projektu, rakstiet uz e-pastu <0>{sponsorshipEmail}</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive CV ir bezmaksas un atvērtā koda resurss. Ja tas jums ir palī
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume ir atvērtā pirmkoda, uz privātumu vērsts un pilnīgi bezmaksas. Atšķirībā no citiem CV veidotājiem tas nerāda reklāmas, neizseko jūsu datus un neierobežo funkcijas ar maksas sienu."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive CV joprojām ir bezmaksas, atvērtā koda un neatkarīgs, jo uzņēmumi izvēlas atbalstīt tā pamatā esošo darbu. Viņu sponsorēšana palīdz finansēt mitināšanu, uzturēšanu un nepārtrauktu attīstību kopienai."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "Teksta krāsa"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Taju"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "Paldies mūsu sponsoriem"
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

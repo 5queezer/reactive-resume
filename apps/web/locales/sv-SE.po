@@ -8,7 +8,7 @@ msgstr ""
 "Language: sv\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -441,6 +441,10 @@ msgstr "Fråga vad som helst om detta CV"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "Bildförhållande"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud stöder Reactive Resume som projektsponsor. Om ditt företag vill sponsra projektet, skicka e-post till <0>{sponsorshipEmail}</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive Resume är gratis och har öppen källkod. Om det har hjälpt d
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume har en öppen källkod, är integritetsfokuserat och helt gratis. Till skillnad från andra CV-byggare visas inga annonser, spårar dig inte och gömmer inte funktioner bakom en betalvägg."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume förblir gratis, öppen källkod och oberoende eftersom företag väljer att stödja arbetet bakom det. Deras sponsring hjälper till att finansiera hosting, underhåll och fortsatt utveckling för communityn."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "Textfärg"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Thailändska"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "Tack till våra sponsorer"
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

@@ -8,7 +8,7 @@ msgstr ""
 "Language: cs\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:31\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
@@ -441,6 +441,10 @@ msgstr "Zeptejte se na cokoli ohledně tohoto životopisu"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "Poměr stran"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud podporuje Reactive Resume jako sponzora projektu. Pokud by vaše společnost chtěla projekt sponzorovat, napište e-mail na <0>{sponsorshipEmail}</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive Resume je zdarma a má otevřený zdrojový kód. Pokud vám po
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume je open source, zaměřené na soukromí a zcela zdarma. Na rozdíl od jiných nástrojů pro tvorbu životopisů nezobrazuje reklamy, nesleduje vaše data a neomezuje funkce za paywallem."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume zůstává bezplatný, open-source a nezávislý, protože se firmy rozhodly podporovat práci, která za ním stojí. Jejich sponzorství pomáhá financovat hosting, údržbu a další rozvoj pro komunitu."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "Barva textu"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Thajština"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "Děkujeme našim sponzorům"
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

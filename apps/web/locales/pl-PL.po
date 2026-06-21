@@ -8,7 +8,7 @@ msgstr ""
 "Language: pl\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
@@ -441,6 +441,10 @@ msgstr "Zapytaj o wszystko na temat tego CV"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "Proporcje obrazu"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud wspiera Reactive Resume jako sponsor projektu. Jeśli Twoja firma chciałaby sponsorować projekt, wyślij wiadomość e-mail na adres <0>{sponsorshipEmail}</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive Resume jest darmowy i ma otwarte oprogramowanie. Jeśli Ci pomo
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume jest open-source, skupione na prywatności i całkowicie darmowe. W przeciwieństwie do innych kreatorów CV nie wyświetla reklam, nie śledzi Twoich danych ani nie ukrywa funkcji za paywallem."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume pozostaje darmowy, open source i niezależny, ponieważ firmy decydują się wspierać prace nad nim. Ich sponsoring pomaga finansować hosting, utrzymanie i dalszy rozwój społeczności."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "Kolor tekstu"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Tajski"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "Dziękujemy naszym sponsorom"
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

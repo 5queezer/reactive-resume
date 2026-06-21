@@ -1,10 +1,10 @@
 import type { FontWeight } from "@reactive-resume/fonts";
 import type { ResumeData, Typography } from "@reactive-resume/schema/resume/data";
-import type { Locale } from "@reactive-resume/utils/locale";
+import type { Locale, Script } from "@reactive-resume/utils/locale";
 import { letters as cjkLetters } from "cjk-regex";
 import {
 	getFont,
-	getPdfCjkFallbackFontFamily,
+	getPdfFallbackFontFamilies,
 	getWebFontSource,
 	isStandardPdfFontFamily,
 	resolveLegacyFontAlias,
@@ -157,13 +157,78 @@ export const resumeContentContainsCJK = (data: ResumeData): boolean => {
 	});
 };
 
-export const registerFonts = (typography: Typography, locale: Locale, hasCjkContent = false): PdfTypography => {
-	const needsCjkTextSupport = isCJKLocale(locale) || hasCjkContent;
+// Detect which non-Latin writing systems actually appear in the content so we
+// only register (and correctly order) the fallback fonts that are needed.
+// Codepoints cannot distinguish Simplified from Traditional Han, so Han maps to
+// "han-simplified"; Traditional ordering instead comes from the zh-TW locale.
+const hangulRegex = /[가-힯ᄀ-ᇿ㄰-㆏ꥠ-꥿]/;
+const kanaRegex = /[぀-ゟ゠-ヿㇰ-ㇿ]/;
+const hanRegex = /[㐀-䶿一-鿿豈-﫿]/;
+
+// Arabic + Supplement + Extended-A + Presentation Forms-A/B (covers Persian).
+const arabicRegex = /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-ﻼ]/;
+const hebrewRegex = /[֐-׿יִ-ﭏ]/;
+const thaiRegex = /[฀-๿]/;
+
+const scriptDetectors: { script: Script; regex: RegExp }[] = [
+	{ script: "hangul", regex: hangulRegex },
+	{ script: "kana", regex: kanaRegex },
+	{ script: "han-simplified", regex: hanRegex },
+	{ script: "arabic", regex: arabicRegex },
+	{ script: "hebrew", regex: hebrewRegex },
+	{ script: "thai", regex: thaiRegex },
+];
+
+const collectScripts = (value: unknown, scripts: Set<Script>): void => {
+	if (typeof value === "string") {
+		for (const { script, regex } of scriptDetectors) {
+			if (regex.test(value)) scripts.add(script);
+		}
+		return;
+	}
+
+	if (!value || typeof value !== "object") return;
+	if (Array.isArray(value)) {
+		for (const item of value) collectScripts(item, scripts);
+		return;
+	}
+
+	for (const item of Object.values(value as Record<string, unknown>)) collectScripts(item, scripts);
+};
+
+export const resumeContentScripts = (data: ResumeData): Set<Script> => {
+	const scripts = new Set<Script>();
+	collectScripts(
+		{
+			basics: data.basics,
+			summary: data.summary,
+			sections: data.sections,
+			customSections: data.customSections,
+		},
+		scripts,
+	);
+	return scripts;
+};
+
+export const registerFonts = (
+	typography: Typography,
+	locale: Locale,
+	hasCjkContent = false,
+	scripts?: Set<Script>,
+): PdfTypography => {
+	// CJK needs per-character line breaking. This must stay CJK-only: applying
+	// it to Arabic (cursive, joined letters) or Thai (combining marks) would
+	// break shaping, so non-CJK fallbacks below do not enable it.
+	const needsCjkLineBreaking = isCJKLocale(locale) || hasCjkContent;
 
 	Font.registerHyphenationCallback((word) => {
-		if (needsCjkTextSupport) {
+		if (needsCjkLineBreaking) {
 			if (word === " ") return ["\u200C "];
-			return [...word].flatMap((l) => [l, ""]);
+			// Only break at every character for words that contain CJK characters.
+			// Latin/non-CJK words must stay intact even in a CJK-locale resume.
+			if (cjkLetterRegex.test(word)) {
+				return [...word].flatMap((l) => [l, ""]);
+			}
 		}
 
 		return [word];
@@ -197,41 +262,50 @@ export const registerFonts = (typography: Typography, locale: Locale, hasCjkCont
 		registerFont(headingFontFamily, headingRange.highest, italic);
 	}
 
-	// Register a CJK fallback so textkit can substitute per-codepoint for
-	// characters the primary font lacks (#2986). Register the regular and
-	// bold ranges so CJK glyph fallback preserves <strong>/font-weight styles.
-	const bodyCjkFallback = needsCjkTextSupport ? getPdfCjkFallbackFontFamily(bodyFontFamily) : null;
-	const headingCjkFallback = needsCjkTextSupport ? getPdfCjkFallbackFontFamily(headingFontFamily) : null;
+	// Register script fallbacks so textkit can substitute per-codepoint for
+	// characters the primary font lacks (#2986). One Noto font per writing
+	// system is registered (ordered by locale + detected scripts) so Hangul,
+	// Kana, Han, Arabic, Hebrew and Thai each resolve against a font that
+	// actually contains them. Register the regular and bold ranges so glyph
+	// fallback preserves <strong>/font-weight.
+	const fallbackScripts = new Set<Script>(scripts ?? []);
+	// `hasCjkContent` is a script-agnostic flag (cjk-regex); when it is set
+	// without an explicit script set, assume Han so a SC fallback is registered.
+	if (hasCjkContent) fallbackScripts.add("han-simplified");
 
-	const registerCjkFallback = (family: string, ranges: FontWeightRange[]) => {
+	const bodyFallbacks = getPdfFallbackFontFamilies(bodyFontFamily, { locale, scripts: fallbackScripts });
+	const headingFallbacks = getPdfFallbackFontFamilies(headingFontFamily, { locale, scripts: fallbackScripts });
+
+	const registerFallbacks = (families: string[], ranges: FontWeightRange[]) => {
 		const weights = collectFontRangeWeights(ranges);
 
-		for (const weight of weights) {
-			registerFont(family, weight, false);
-			registerFont(family, weight, true);
+		for (const family of families) {
+			for (const weight of weights) {
+				registerFont(family, weight, false);
+				registerFont(family, weight, true);
+			}
 		}
 	};
 
-	if (bodyCjkFallback && bodyCjkFallback === headingCjkFallback) {
-		registerCjkFallback(bodyCjkFallback, [bodyRange, headingRange]);
+	const sameStack =
+		bodyFallbacks.length === headingFallbacks.length &&
+		bodyFallbacks.every((family, index) => family === headingFallbacks[index]);
+
+	if (sameStack) {
+		registerFallbacks(bodyFallbacks, [bodyRange, headingRange]);
 	} else {
-		if (bodyCjkFallback) {
-			registerCjkFallback(bodyCjkFallback, [bodyRange]);
-		}
-		if (headingCjkFallback) {
-			registerCjkFallback(headingCjkFallback, [headingRange]);
-		}
+		registerFallbacks(bodyFallbacks, [bodyRange]);
+		registerFallbacks(headingFallbacks, [headingRange]);
 	}
 
 	// Latin-only path: no fallback registered, return as-is.
-	if (!bodyCjkFallback && !headingCjkFallback) {
+	if (bodyFallbacks.length === 0 && headingFallbacks.length === 0) {
 		return pdfTypography as PdfTypography;
 	}
 
-	const bodyStack: string | string[] = bodyCjkFallback ? [bodyFontFamily, bodyCjkFallback] : bodyFontFamily;
-	const headingStack: string | string[] = headingCjkFallback
-		? [headingFontFamily, headingCjkFallback]
-		: headingFontFamily;
+	const bodyStack: string | string[] = bodyFallbacks.length > 0 ? [bodyFontFamily, ...bodyFallbacks] : bodyFontFamily;
+	const headingStack: string | string[] =
+		headingFallbacks.length > 0 ? [headingFontFamily, ...headingFallbacks] : headingFontFamily;
 
 	return {
 		body: { ...pdfTypography.body, fontFamily: bodyStack },

@@ -8,7 +8,7 @@ msgstr ""
 "Language: id\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -441,6 +441,10 @@ msgstr "Tanyakan apa pun tentang resume ini."
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "Rasio Aspek"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud mendukung Reactive Resume sebagai sponsor proyek. Jika perusahaan Anda ingin mensponsori proyek ini, kirim email ke <0>{sponsorshipEmail}</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive Resume gratis dan bersifat open source. Jika aplikasi ini berma
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume bersifat sumber terbuka, berfokus pada privasi, dan sepenuhnya gratis. Tidak seperti pembuat resume lainnya, aplikasi ini tidak menampilkan iklan, melacak data Anda, atau membatasi fitur di balik paywall."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume tetap gratis, open-source, dan independen karena perusahaan memilih untuk mendukung pekerjaan di baliknya. Dukungan sponsor mereka membantu mendanai hosting, pemeliharaan, dan pengembangan berkelanjutan untuk komunitas."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "Warna Teks"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Thai"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "Terima kasih kepada para sponsor kami."
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

@@ -8,7 +8,7 @@ msgstr ""
 "Language: nl\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Dutch\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -441,6 +441,10 @@ msgstr "Stel gerust al je vragen over dit cv."
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "Beeldverhouding"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud ondersteunt Reactive Resume als projectsponsor. Als uw bedrijf het project wil sponsoren, kunt u een e-mail sturen naar <0>{sponsorshipEmail}</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive Resume is gratis en open source. Als het je geholpen heeft, ove
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume is open-source, privacygericht en volledig gratis. In tegenstelling tot andere cv-bouwers toont het geen advertenties, volgt het uw gegevens niet en beperkt het uw functies niet achter een betaalmuur."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume blijft gratis, open-source en onafhankelijk omdat bedrijven ervoor kiezen het werk erachter te ondersteunen. Hun sponsoring helpt bij de financiering van hosting, onderhoud en verdere ontwikkeling voor de community."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "Tekstkleur"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Thais"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "Hartelijk dank aan onze sponsors."
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

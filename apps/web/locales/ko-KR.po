@@ -8,7 +8,7 @@ msgstr ""
 "Language: ko\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Korean\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -441,6 +441,10 @@ msgstr "이력서에 대해 궁금한 점이 있으면 무엇이든 물어보세
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "가로세로 비율"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud는 Reactive Resume의 프로젝트 스폰서로 지원합니다. 귀사에서 프로젝트 스폰서 참여를 원하시면 <0>{sponsorshipEmail}으로 이메일을 보내주세요.</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive Resume는 무료 오픈 소스 소프트웨어입니다. 도움
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume는 오픈 소스, 개인정보 보호 중심, 완전 무료 서비스입니다. 다른 이력서 작성 도구와 달리 광고를 표시하지 않고, 데이터를 추적하지 않으며, 기능을 페이월 뒤에 숨기지도 않습니다."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume는 기업들의 후원 덕분에 무료 오픈소스 독립성을 유지하고 있습니다. 기업들의 후원은 호스팅, 유지 관리 및 커뮤니티의 지속적인 개발에 필요한 자금을 지원합니다."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "텍스트 색상"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "태국어"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "후원해 주신 분들께 감사드립니다."
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

@@ -105,7 +105,7 @@
 					},
 					{
 						"group": "Community",
-						"pages": ["community/spotlight"]
+						"pages": ["community/sponsors", "community/spotlight"]
 					},
 					{
 						"group": "Legal",

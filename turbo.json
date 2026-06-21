@@ -83,6 +83,8 @@
 		"FLAG_DISABLE_SIGNUPS",
 		"FLAG_DISABLE_EMAIL_AUTH",
 		"FLAG_DISABLE_IMAGE_PROCESSING",
+		"FLAG_DISABLE_API_RATE_LIMIT",
+		"FLAG_SHOW_SPONSORS",
 		"FLAG_ALLOW_UNSAFE_OAUTH_REDIRECT_URI",
 		"FLAG_ALLOW_UNSAFE_AI_BASE_URL",
 		"GOOGLE_CLOUD_API_KEY",
@@ -99,6 +101,9 @@
 		"test": {},
 		"test:coverage": {},
 		"test:ci": {},
+		"test:e2e": {
+			"cache": false
+		},
 		"test:agent": {},
 		"dev": {
 			"cache": false,

@@ -36,6 +36,8 @@ logs
 # Testing
 coverage
 reports
+playwright-report
+test-results
 
 # Cache
 tmp

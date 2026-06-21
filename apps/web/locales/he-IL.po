@@ -8,7 +8,7 @@ msgstr ""
 "Language: he\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:31\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Hebrew\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3;\n"
@@ -441,6 +441,10 @@ msgstr "שאלו כל דבר בנוגע לקורות חיים אלה"
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "יחס גובה־רוחב"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud תומך ב-Reactive Resume כנותן חסות לפרויקט. אם החברה שלך מעוניינת לתת חסות לפרויקט, אנא שלח דוא\"ל ל-<0>{sponsorshipEmail}</0> ."
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "ריאקטיבי קורות חיים הם חינמיים ובקוד פת
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume הוא בקוד פתוח, ממוקד פרטיות וחינמי לחלוטין. בניגוד לבוני קורות חיים אחרים, הוא לא מציג פרסומות, לא עוקב אחרי הנתונים שלך ולא נועל יכולות מאחורי חומת תשלום."
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume נשאר חינמי, קוד פתוח ועצמאי מכיוון שחברות בוחרות לתמוך בעבודה שמאחוריה. החסות שלהן מסייעת במימון אירוח, תחזוקה ופיתוח מתמשך עבור הקהילה."
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "צבע כתב"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "תאית"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "תודה לספונסרים שלנו"
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."

@@ -1,4 +1,5 @@
-import DOMPurify, { type Config } from "dompurify";
+import type { Config } from "dompurify";
+import DOMPurify from "dompurify";
 
 const ALLOWED_TAGS = [
 	"p",

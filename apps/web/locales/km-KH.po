@@ -8,7 +8,7 @@ msgstr ""
 "Language: km\n"
 "Project-Id-Version: reactive-resume\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 13:32\n"
+"PO-Revision-Date: 2026-06-18 16:58\n"
 "Last-Translator: \n"
 "Language-Team: Khmer\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -441,6 +441,10 @@ msgstr "សួរអ្វីមួយអំពីប្រវត្តិរូ
 #: src/routes/builder/$resumeId/-sidebar/left/sections/picture.tsx
 msgid "Aspect Ratio"
 msgstr "សមាមាត្រទ្រង់ទ្រាយ"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Atlas Cloud supports Reactive Resume as a project sponsor. If your company would like to sponsor the project, email <0>{sponsorshipEmail}</0>."
+msgstr "Atlas Cloud គាំទ្រ Reactive Resume ក្នុងនាមជាអ្នកឧបត្ថម្ភគម្រោង។ ប្រសិនបើក្រុមហ៊ុនរបស់អ្នកចង់ឧបត្ថម្ភគម្រោងនេះ សូមផ្ញើអ៊ីមែលទៅកាន់ <0>{sponsorshipEmail}</0> ។"
 
 #: src/routes/agent/$threadId.tsx
 msgid "Attach files"
@@ -2653,6 +2657,10 @@ msgstr "Reactive Resume គឺឥតគិតថ្លៃ និងជាប្�
 msgid "Reactive Resume is open-source, privacy-focused, and completely free. Unlike other resume builders, it doesn't show ads, track your data, or limit your features behind a paywall."
 msgstr "Reactive Resume គឺ​បើក​ប្រភព ផ្តោតលើ​ភាព​ឯកជន និង​ឥតគិតថ្លៃ​ទាំងស្រុង។ ខុស​ពី​កម្មវិធី​បង្កើត​ប្រវត្តិរូប​ផ្សេងៗ វា​មិន​បង្ហាញ​ពាណិជ្ជកម្ម មិន​តាមដាន​ទិន្នន័យ​របស់​អ្នក ហើយ​មិន​កំណត់​មុខងារ​ពីក្រោយ paywall ឡើយ។"
 
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Reactive Resume stays free, open-source, and independent because companies choose to support the work behind it. Their sponsorship helps fund hosting, maintenance, and continued development for the community."
+msgstr "Reactive Resume នៅតែឥតគិតថ្លៃ ជាប្រភពបើកចំហ និងឯករាជ្យ ពីព្រោះក្រុមហ៊ុននានាជ្រើសរើសគាំទ្រការងារនៅពីក្រោយវា។ ការឧបត្ថម្ភរបស់ពួកគេជួយផ្តល់មូលនិធិដល់ការបង្ហោះ ការថែទាំ និងការអភិវឌ្ឍជាបន្តបន្ទាប់សម្រាប់សហគមន៍។"
+
 #. App version label in footer; includes semantic version variable
 #: src/components/ui/copyright.tsx
 msgid "Reactive Resume v{__APP_VERSION__}"
@@ -3318,6 +3326,10 @@ msgstr "ពណ៌​អត្ថបទ"
 #: src/libs/locale.ts
 msgid "Thai"
 msgstr "Thai"
+
+#: src/routes/_home/-sections/sponsors.tsx
+msgid "Thank you to our sponsors"
+msgstr "សូមអរគុណដល់អ្នកឧបត្ថម្ភរបស់យើង"
 
 #: src/routes/agent/$threadId.tsx
 msgid "The agent needs your input."
